@@ -40,7 +40,7 @@ Specifications
 #.  Create a class named ``Timer2Class``.
 
 #.  Define a public *class attribute* named ``timer``. The ``timeit`` module's
-    ``default_timer()`` method to provide you the correct timer function.
+    ``default_timer`` property to provide you the correct timer function.
 
 #.  Create a class constructor function. Have it accept the following arguments:
 
