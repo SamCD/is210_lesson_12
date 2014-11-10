@@ -39,10 +39,8 @@ Specifications
 
 #.  Create a class named ``Timer2Class``.
 
-#.  Define a public *class attribute* named ``timer``. Use a comprehension
-    ``if`` statement to select the correct time method if ``sys.platform[:3]
-    == 'win'``. If true, it should use ``time.clock`` otherwise it should
-    default to ``time.time``.
+#.  Define a public *class attribute* named ``timer``. The ``timeit`` module's
+    ``default_timer()`` method to provide you the correct timer function.
 
 #.  Create a class constructor function. Have it accept the following arguments:
 
@@ -130,9 +128,9 @@ Specifications
 
 #.  Example output of your program should look like:
 
-.. code-block::
+.. code-block:: console
 
-    python pi_r_round.py
+    $ python pi_r_round.py
     ('stdlib', (0.20364809036254883, '3.141592653589793127002456641'))
     ('bbp', (0.3437209129333496, '3.141592653589793238462643381'))
     ('bellard', (0.7685971260070801, '3.141592653589793238462643383'))
