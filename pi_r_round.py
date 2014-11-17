@@ -123,3 +123,64 @@ def chudnovsky(depth):
     pi = pi * Decimal(10005).sqrt() / 4270934400
     pi **= -1
     return pi
+
+class Timer2Class(object):
+    """Creates timer class"""
+
+    import timeit
+    timer = timeit.default_timer
+
+    def __init__(self, func, *args, **kwargs):
+        self.func = func
+        self.args = args
+        self.kwargs = kwargs
+
+    import time, sys
+
+
+    def total(self, func, *args, **kwargs):
+        """Alternative timer
+        Calls and times func(*pargs, **kargs) _reps time and returns
+        total time for all runs, with final result."""
+        self._reps = kargs.pop('_reps', 1000)
+        self.repslist = list(range(_self.reps))
+        self.start = self.timer()
+        for i in repslist:
+            ret = func(*args, **kwargs)
+        self.elapsed = self.timer() - self.start
+        return (self.elapsed, ret)
+
+
+    def bestof(self, func, *args, **kwargs):
+        """Finds best time
+        Runs best-of-N timer to attempt to filter out system load variation,
+        and returns total time for all runs, with final results."""
+        self._reps = kwargs.pop('_reps', 5)
+        self.best = 2 **32
+        for i in range(self._reps):
+            start = self.timer()
+            ret = func(*args, **kwargs)
+            elapsed = self.timer() - start
+            if elapsed < self.best: self.best = elapsed
+        retrn (self.best, ret)
+
+
+    def bestoftotal(self, func, *args, **kwargs):
+        """Runs best-of-totals test, which takes the best among _reps1 runs
+        of (the total of _reps runs)"""
+        self._reps1 = kwargs.pop('reps1', 5)
+        funcname = func.__name__
+        for i in range(self._reps1):
+            ret = func(*args, **kwargs)
+        return funcname,\
+               min(self.total(func, *args, **kwargs)
+                   for i in range(self.reps1)),\
+                   ret
+
+if __name__ == "__main__":
+
+    n = 1000
+
+    for test in (stdlib, bbp, bellard, chudnovsky):
+        timer2 = Timer2Class(test, n, _reps1=1, _reps=3)
+        print timer2.bestoftotal()
